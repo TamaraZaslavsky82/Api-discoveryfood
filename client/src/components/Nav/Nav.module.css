@@ -1,0 +1,61 @@
+.container{
+    background-color: rgb(230, 161, 58);
+  
+   
+}
+.logo{
+    width: 20%;
+    margin-left: 30px;
+}
+
+.home{
+    margin-left: 400px;
+    margin-top: -50px;
+    color:rgb(43, 41, 41);
+    font-size: 20px;
+    padding: 5px;
+   
+}
+.home:hover{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(193, 206, 75);
+    width: 5%;
+}
+   
+.home2{
+    margin-left: 500px;
+    margin-top: -57px;
+    color:rgb(43, 41, 41);
+    font-size: 20px;
+    padding: 5px;
+   
+}
+.home2:hover{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(193, 206, 75);
+    width: 10%;
+}
+
+.home3{
+    margin-left: 680px;
+    margin-top: -57px;
+    color:rgb(43, 41, 41);
+    font-size: 20px;
+    padding: 5px;
+   
+}
+.home3:hover{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(193, 206, 75);
+    width: 5%;
+}
+
+
+.link{
+    text-decoration: none;
+}
+
+

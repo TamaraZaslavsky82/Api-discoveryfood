@@ -1,0 +1,30 @@
+.fondo{
+   background-image: url(../../img/fondo.png);
+   background-size: cover;
+   width: 100%;
+height: 620px;
+
+}
+
+.logo{
+   width: 30%;
+   margin-left: 470px;
+   margin-top: 250px;
+   margin-bottom: 50px;
+   
+}
+
+.boton{
+   border: none;
+   background-color: rgb(202, 209, 135);
+   padding: 8px;
+   border-radius: 5px;
+   font-family:monospace;
+   font-size: 17;
+   margin-left: -300px;
+   
+}
+
+.boton:hover{
+   background-color: rgb(238, 176, 105);
+}
