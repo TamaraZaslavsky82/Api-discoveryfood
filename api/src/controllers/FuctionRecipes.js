@@ -19,98 +19,97 @@ async function getInfoApi() {
         steps:
           i.analyzedInstructions[0] && i.analyzedInstructions[0].steps
             ? i.analyzedInstructions[0].steps.map((s) => s.step).join(" \n")
-            : "", 
-        diets: i.diets, 
+            : "",
+        diets: i.diets,
       };
     });
     return InfoPrincipal;
   } catch (error) {
     console.log("Error: ", error);
   }
-};
+}
 
 async function getDataBaseRecipe() {
-  
-    return await Recipe.findAll({
-      include: {
-        model: Diets,
-        attributes: ["name"],
-        through: {
-          attributes: [],
-        },
+  return await Recipe.findAll({
+    include: {
+      model: Diets,
+      attributes: ["name"],
+      through: {
+        attributes: [],
       },
-    });
-  };
+    },
+  });
+}
 
+async function getAllRecipes() {
+  const saveApiInformation = await getInfoApi();
+  const saveDbInformation = await getDataBaseRecipe();
+  const allRecipes = await saveApiInformation.concat(saveDbInformation);
 
-  async function getAllRecipes() {
-  
-    const saveApiInformation = await getInfoApi(); 
-    const saveDbInformation = await getDataBaseRecipe();
-    const allRecipes = await saveApiInformation.concat(saveDbInformation);
-  
-    return allRecipes;
-  };
-  
-  async function createIdRecipe(){
-    const allRecipes = await Recipe.findAll();
-    const allID = allRecipes.map(r => { return r.id })
-    let id = Math.floor(Math.random()*123456)
-    while(allID.includes(id)){
-        id = Math.floor(Math.random()*123456)
-    }
-    return id
-  };
- 
-  async function getRecipeById(id) {
-    return id
-  }
+  return allRecipes;
+}
 
-  async function newRecipe(name, summary, healthScore, image, steps, typeDiets){
-    const id = await createIdRecipe()
-    //console.log("entrando al controlador de creacion de receta");
-    const recipe = await Recipe.create({
-        id: id,
-        name: name,
-        summary: summary,
-        healthScore: healthScore,
-        image: image,
-        steps: steps,
-       
-    })
-    
-    typeDiets.map(async(diet) => {const dietName = await Diets.findOne({ where: { name: diet }})
-    await recipe.addDiets(dietName); })
-    
-    return recipe
-  };
+// async function createIdRecipe(){
+//   const allRecipes = await Recipe.findAll();
+//   const allID = allRecipes.map(r => { return r.id })
+//   let id = Math.floor(Math.random()*123456)
+//   while(allID.includes(id)){
+//       id = Math.floor(Math.random()*123456)
+//   }
+//   return id
+// };
 
-  async function keepDietsDb(){
-    const Information = (await axios(
+async function getRecipeById(id) {
+  const searchRecipe = await Recipe.findByPk(id);
+  return searchRecipe;
+}
+
+async function newRecipe(name, summary, healthScore, image, steps, typeDiets) {
+  // const id = await createIdRecipe()
+  //console.log("entrando al controlador de creacion de receta");
+  const recipe = await Recipe.create({
+    // id: id,
+    name: name,
+    summary: summary,
+    healthScore: healthScore,
+    image: image,
+    steps: steps,
+  });
+
+  typeDiets.map(async (diet) => {
+    const dietName = await Diets.findOne({ where: { name: diet } });
+    await recipe.addDiets(dietName);
+  });
+
+  return recipe;
+}
+
+async function keepDietsDb() {
+  const Information = (
+    await axios(
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
-    )).data?.results;
-    const infoPrincipal = Information.map(async(recipe)=>{
-      recipe.diets.map(async(diet)=>{
-        await Diets.findOrCreate({
-          where: { name: diet },
-          defaults: { name: diet }
-        })
-      })
+    )
+  ).data?.results;
+  const infoPrincipal = Information.map(async (recipe) => {
+    recipe.diets.map(async (diet) => {
+      await Diets.findOrCreate({
+        where: { name: diet },
+        defaults: { name: diet },
+      });
     });
-    return 
-  };
+  });
+  return;
+}
 
-  async function getAllDiets(){
-    const allDiets = await Diets.findAll();
-    return allDiets
-  };
-  
-  module.exports = {
-      getAllRecipes,
-      newRecipe,
-      createIdRecipe,
-      keepDietsDb,
-      getAllDiets,
-      
-  }
-      
+async function getAllDiets() {
+  const allDiets = await Diets.findAll();
+  return allDiets;
+}
+
+module.exports = {
+  getAllRecipes,
+  newRecipe,
+
+  keepDietsDb,
+  getAllDiets,
+};
