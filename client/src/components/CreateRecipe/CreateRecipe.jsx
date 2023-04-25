@@ -1,11 +1,8 @@
-import { React, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getDietas, postRecipe } from '../../Redux/actions';
-import { Link, useHistory } from 'react-router-dom';
-
-
-import { FaArrowLeft } from 'react-icons/fa';
-
+import { React, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDietas, postRecipe } from "../../Redux/actions";
+import { Link, useHistory } from "react-router-dom";
+import "../CreateRecipe/CreateRecipe.css";
 
 /* import './styles.css'; */
 
@@ -19,11 +16,11 @@ export default function CreateRecipe() {
   }, []);
 
   const [input, setInput] = useState({
-    name: '',
-    summary: '',
-    healthScore: '',
+    name: "",
+    summary: "",
+    healthScore: "",
     stepbyStep: [],
-    image: '',
+    image: "",
     diet: [],
     createIndb: true,
   });
@@ -62,7 +59,7 @@ export default function CreateRecipe() {
         })
       );
     }
-    e.target.value = '';
+    e.target.value = "";
   }
 
   function handleStep(e) {
@@ -75,16 +72,16 @@ export default function CreateRecipe() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postRecipe(input));
-    // alert('receta Creada con Exito');
+    alert("receta Creada con Exito");
     setInput({
-      name: '',
-      summary: '',
+      name: "",
+      summary: "",
       healthScore: 1,
-      stepbyStep: '',
-      image: '',
+      step: "",
+      image: "",
       diet: [],
     });
-    histori.push('/home');
+    histori.push("/home");
   }
   function handleDelete(el) {
     const newinput = {
@@ -97,43 +94,19 @@ export default function CreateRecipe() {
 
   return (
     <>
-      <div >
-        <br />
-        <Link to="/home">
-          <div className="d__back">
-            <p>
-              <FaArrowLeft />
-            </p>
-          </div>
-        </Link>
-
-        <div >
-          <div c>
-            {/* <img src= alt="Imagen No Fount" /> */}
-          </div>
+      <div className="d__back">
+        <div>
+          <div >{/* <img src= alt="Imagen No Fount" /> */}</div>
           {/* ------------------Creacion del Formulario------------------ */}
 
           <div className="container__forms">
-            <div className="container__logo">
-              {/* <div>
-                {!input.image.trim() ? (
-                  <img src={food} alt="no hay imagen" width="300px" />
-                ) : (
-                  <img
-                    src={input.image}
-                    alt="no hay imagen"
-                    width="300px"
-                    height="270px"
-                  />
-                )}
-              </div> */}
-            </div>
-            <div >
+            
+            <div>
               <h1>NEW RECIPE</h1>
               <form onSubmit={handleSubmit}>
-                <div >
+                <div>
                   <input
-                    className={errors.name }
+                    className={errors.name}
                     type="text"
                     placeholder="Agregar un nombre de Receta:"
                     onChange={inputHandleChangue}
@@ -141,7 +114,7 @@ export default function CreateRecipe() {
                     value={input.name}
                   />
                 </div>
-                {errors.name && <p >{errors.name}</p>}
+                {errors.name && <p>{errors.name}</p>}
 
                 <div>
                   <textarea
@@ -153,9 +126,9 @@ export default function CreateRecipe() {
                     placeholder="Ingrese una Description de la Receta"
                   />
                 </div>
-                {errors.summary && <p >{errors.summary}</p>}
+                {errors.summary && <p>{errors.summary}</p>}
 
-                <div >
+                <div>
                   <span>{input.healthScore}</span>
                   <input
                     type="range"
@@ -166,16 +139,14 @@ export default function CreateRecipe() {
                     onChange={rangeHhandleChangue}
                   />
                 </div>
-                {errors.healthScore && (
-                  <p >{errors.healthScore}</p>
-                )}
+                {errors.healthScore && <p>{errors.healthScore}</p>}
 
                 <div className="input__text">
                   <textarea
                     name="stepbyStep"
                     cols="40"
                     rows="3"
-                    value={input.stepbyStep}
+                    value={input.step}
                     placeholder="Ingrese los pasos par crear la receta"
                     onChange={handleStep}
                   />
@@ -192,39 +163,29 @@ export default function CreateRecipe() {
                 </div>
 
                 <div>
-                <select name="diet" onChange={(e) => selectHandleDiet(e)}>
-  <option value="">--Seleccione una Dieta--</option>
-  {diets?.map((el) => (
-    <option key={el.id} value={el.name}>
-      {el.name}
-    </option>
-  ))}
-</select>
+                  <select name="diet" onChange={(e) => selectHandleDiet(e)}>
+                    <option value="">--Seleccione una Dieta--</option>
+                    {diets?.map((el) => (
+                      <option key={el.id} value={el.name}>
+                        {el.name}
+                      </option>
+                    ))}
+                  </select>
 
-<ul>
-  {input.diet.map((el) => (
-    <li key={el}>{el}</li>
-  ))}
-</ul>
-
+                  <ul>
+                    {input.diet.map((el) => (
+                      <li key={el}>{el}</li>
+                    ))}
+                  </ul>
                 </div>
-                {errors.diet && <p >{errors.diet}</p>}
+                {errors.diet && <p>{errors.diet}</p>}
                 {!input.name || !input.summary || !input.diet.length ? (
-                  <div >
-                    <input
-                      type="submit"
-                      value=" Add Recipe"
-                     
-                      disabled
-                    />
+                  <div>
+                    <input type="submit" value=" Add Recipe" disabled />
                   </div>
                 ) : (
-                  <div >
-                    <input
-                      type="submit"
-                      value=" Add Recipe"
-                     
-                    />
+                  <div>
+                    <input type="submit" value=" Add Recipe" />
                   </div>
                 )}
               </form>
@@ -247,14 +208,14 @@ export default function CreateRecipe() {
 export function validate(input) {
   let errors = {};
   if (!input.name) {
-    errors.name = '! Recipe  is required';
+    errors.name = "! Recipe  is required";
   } else if (!input.summary) {
-    errors.summary = '! summary  is required';
+    errors.summary = "! summary  is required";
   } else if (!input.healthScore) {
-    errors.healthScore = '! healthScore  is required';
+    errors.healthScore = "! healthScore  is required";
   } else if (!input.diet.length) {
-    errors.diet = 'Seleccione al menos una Dieta';
+    errors.diet = "Seleccione al menos una Dieta";
   }
 
-  return errors
+  return errors;
 }

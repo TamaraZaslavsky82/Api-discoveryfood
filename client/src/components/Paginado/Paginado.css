@@ -5,7 +5,8 @@
     background-color: rgb(253, 138, 6);
     padding: 5px;
     width: 2%;
-    margin-top: 3px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .button__paginado:hover{

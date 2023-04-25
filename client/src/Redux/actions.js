@@ -69,9 +69,9 @@ export const getRecipeID = (id) => {
 };
 
 
-export const postRecipe = (atributos) => {
+export const postRecipe = (payload) => {
     return async function (dispatch) {
-        var post = await axios.post('http://localhost:3001/recipes', atributos);
+        var post = await axios.post('http://localhost:3001/recipes', payload);
         return post;
     }
 };

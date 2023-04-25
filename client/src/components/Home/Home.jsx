@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import Recipe from "../Recipe/Recipe";
 import Paginado from "../Paginado/Paginado";
 import "../Home/Home.css";
+import Footer from "../footer/Footer";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -140,6 +141,7 @@ export default function Home() {
           allRecetas={allRecetas.length}
           paginado={paginado}
         />
+       
       </div>
     </div>
   );
