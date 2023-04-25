@@ -1,17 +1,25 @@
-import React from 'react'
-import style from '../../../src/components/Recipe/Recipe.module.css'
+import React from "react";
+import "../Recipe/Recipe.css";
 
-function Recipe(props) {
+export default function Recipe({ name, diets, image, id }) {
+  console.log(image)
+
+ 
   return (
-    <div className={style.fondo}>
-        <div className={style.container}>
-            <button className={style.close} onClick={props.onClose} >🍜</button>
-            <h4 className={style.title}>{props.title}</h4>
-            <img src={props.image} alt='' className={style.img} />
-            <h2>{props.typeDiet}</h2>
+   
+    <React.Fragment>
+      <div className="recipe-card" key={id}>
+        <h2 className="text-recipe">{name}</h2>
+        <div className="img-container">
+          <img src={image} alt="Imagen NO disponible" />
         </div>
-    </div>
-  )
+        <div className="diet">
+          {diets && diets.length > 0 && diets[0]?.name
+            ? diets.map((d) => <span key={d.id}>{d.name}</span>)
+            : diets && diets.map((d) => <span key={d}>{d + " "}</span>)}
+        </div>
+      </div>
+    </React.Fragment>
+   
+  );
 }
-
-export default Recipe

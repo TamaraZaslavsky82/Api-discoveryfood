@@ -1,0 +1,14 @@
+.button__paginado{
+    border: none;
+    margin-left: 9px;
+    border-radius: 5px;
+    background-color: rgb(253, 138, 6);
+    padding: 5px;
+    width: 2%;
+    margin-top: 3px;
+}
+
+.button__paginado:hover{
+    background-color: grey;
+    color: whitesmoke;
+}

@@ -1,0 +1,41 @@
+body {
+    background-image: url(../../img/ingredientes.jpg);
+    background-size: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  .sort{
+    background-color: rgb(25, 26, 25);
+    border: none;
+    padding: 0.6vw;
+    border-radius: 0.5vw;
+    margin-top: 1vw;
+    color:whitesmoke;
+  }
+
+  .level{
+    background-color: rgb(59, 59, 58);
+    border: none;
+    padding: 0.6vw;
+    border-radius: 0.5vw;
+    margin-top: 1vw;
+    color:whitesmoke;
+  }
+
+ 
+  .fondo{
+
+    display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    height: 100%;
+    gap: 30px;
+   margin-top: 20px;
+    
+
+  }
+ 

@@ -7,7 +7,7 @@ const axios = require("axios"); // para realizar las peticiones http
 async function getInfoApi() {
   try {
     const apiInfo = await axios(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=1000`
     );
     const InfoPrincipal = apiInfo.data?.results.map((i) => {
       return {
