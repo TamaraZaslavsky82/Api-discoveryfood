@@ -23,34 +23,18 @@ export const getAllRecipes = () => {
         })
         .catch((err)=>{console.log(err)})
     }
-    // return async function (dispatch) {
-    //     try {
-    //         var recetas = await axios.get("http://localhost:3001/recipes")
-    //         console.log(recetas.data)
-    //         return dispatch({
-    //             type: GET_ALL_RECETAS,
-    //             payload: recetas.data
-    //         })
-    //     }catch(err){
-    //         console.log(err)
-    //     }
-    // };       
+ 
 };
 
 
 export const getRecipeName = (name) => {
     return async function (dispatch) {
-        try {
-            var recetas = await axios.get(`http://localhost:3001/recipes?name=${name}`)
-            return dispatch({
-                type: GET_RECETAS_NAME,
-                payload: recetas.data
-            })
-        }catch(err){
-            console.log(err)
-            alert("El nombre que busca no pertenece a la lista de recetas...")
-        }
-    };
+        var json = await axios.get("http://localhost:3001/recipes?name=" + name);
+        return dispatch({
+          type: GET_RECETAS_NAME,
+          payload: json.data,
+        });
+      };
 };
 
 
@@ -69,9 +53,9 @@ export const getRecipeID = (id) => {
 };
 
 
-export const postRecipe = (payload) => {
+export const postRecipe = (atributos) => {
     return async function (dispatch) {
-        var post = await axios.post('http://localhost:3001/recipes', payload);
+        var post = await axios.post('http://localhost:3001/recipes', atributos);
         return post;
     }
 };
@@ -124,11 +108,3 @@ export const orderByPuntaje = (payload) => {
         payload
     }
 };
-
-// Funcion de accion para del DELETE
-// export const deletearReceta = (id) => {
-//     return {
-//         type: DELETE_RECETA,
-//         payload: id
-//     }
-// };
