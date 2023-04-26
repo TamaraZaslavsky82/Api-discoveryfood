@@ -24,7 +24,7 @@ function App() {
           <Route exact path='/' component={DiscoverIntro}/>
           <Route path='/home' component={Home}/>
           <Route path='/recipes/:id' component={RecipesDetail}/>
-          <Route path='/recipes' component={CreateRecipe}/>
+          <Route exact path='/recipes' component={CreateRecipe}/>
           
         </Switch>
         

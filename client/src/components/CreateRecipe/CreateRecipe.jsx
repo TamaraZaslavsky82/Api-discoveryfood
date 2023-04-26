@@ -22,10 +22,10 @@ export default function CreateRecipe() {
     name: '',
     summary: '',
     healthScore: '',
-    steps: '',
+    stepbyStep: [],
     image: '',
     diet: [],
-    createIndb: true,
+   
   });
   console.log(input);
 
@@ -68,22 +68,21 @@ export default function CreateRecipe() {
   function handleStep(e) {
     setInput({
       ...input,
-      steps: [e.target.value],
+      stepbyStep: [e.target.value],
     });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postRecipe(input));
-    alert('receta Creada con Exito');
+     alert('receta Creada con Exito');
     setInput({
       name: '',
       summary: '',
       healthScore: 1,
-      steps: '',
+      stepbyStep: '',
       image: '',
       diet: [],
-      createIndb: true, // se agrega createIndb con valor true
     });
     histori.push('/home');
   }
@@ -98,8 +97,15 @@ export default function CreateRecipe() {
 
   return (
     <>
-      <div className="d__back">
-       
+      <div >
+        <br />
+        <Link to="/home">
+          <div className="d__back">
+            <p>
+              
+            </p>
+          </div>
+        </Link>
 
         <div >
           <div c>
@@ -166,10 +172,10 @@ export default function CreateRecipe() {
 
                 <div className="input__text">
                   <textarea
-                    name="steps"
+                    name="stepbyStep"
                     cols="40"
                     rows="3"
-                    value={input.steps}
+                    value={input.stepbyStep}
                     placeholder="Ingrese los pasos par crear la receta"
                     onChange={handleStep}
                   />

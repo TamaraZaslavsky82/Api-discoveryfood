@@ -53,13 +53,12 @@ export const getRecipeID = (id) => {
 };
 
 
-export const postRecipe = (atributos) => {
+export function postRecipe(payload) {
     return async function (dispatch) {
-        var post = await axios.post('http://localhost:3001/recipes', atributos);
-        return post;
-    }
-};
-
+      const response = await axios.post("http://localhost:3001/recipes", payload);
+      return response;
+    };
+  }
 export const getDietas = () => {
     return async function (dispatch) {
         try {

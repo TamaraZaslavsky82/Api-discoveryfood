@@ -65,8 +65,7 @@ async function getRecipeById(id) {
 }
 
 async function newRecipe(name, summary, healthScore, image, steps, typeDiets) {
-  // const id = await createIdRecipe()
-  //console.log("entrando al controlador de creacion de receta");
+
   const recipe = await Recipe.create({
     // id: id,
     name: name,
