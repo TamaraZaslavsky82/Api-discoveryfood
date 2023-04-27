@@ -101,11 +101,11 @@ export default function CreateRecipe() {
 
   return (
     <>
-      <div >
+      <div className='d__back'>
         
 
         <div >
-          <div c>
+          <div >
             {/* <img src= alt="Imagen No Fount" /> */}
           </div>
           {/* ------------------Creacion del Formulario------------------ */}

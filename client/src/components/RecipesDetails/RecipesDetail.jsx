@@ -50,13 +50,15 @@ export default function RecipesDetail() {
           </p>
 
           <h4>
-            Dietas:{" "}
-            {recetas[0].diets && recetas[0].diets.length > 0
-              ? recetas[0].creadoDB
-                ? recetas[0].diets.map((d) => d.name + " ")
-                : recetas[0].diets + " "
-              : "No se han indicado dietas asociadas."}
-          </h4>
+  Dietas:{" "}
+  {recetas[0].diets && recetas[0].diets.length > 0
+    ? recetas[0].creadoDB
+      ? recetas[0].diets.map((d) => (d.name + ", "))
+      : JSON.stringify(recetas[0].diets).replace(/[\[\]{}]/g, "") + " "
+    : "No se han indicado dietas asociadas."
+  }
+</h4>
+
 
           <Link to="/home">
             <button className="button__detail">Go back</button>
