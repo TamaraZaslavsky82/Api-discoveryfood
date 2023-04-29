@@ -16,13 +16,13 @@ import Footer from "../footer/Footer";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const allRecetas = useSelector((state) => state.allRecetas); //trae del estado inicial todas las recetas
+  const allRecipes = useSelector((state) => state.allRecetas); //trae del estado inicial todas las recetas
   const [orden, setOrden] = useState("");
   const [paginaActual, setPaginaActual] = useState(1);
   const [recetasPorPagina, setRecetasPorPagina] = useState(9);
   const indiceUltimaReceta = paginaActual * recetasPorPagina;
   const indicePrimerReceta = indiceUltimaReceta - recetasPorPagina;
-  const recetasActuales = allRecetas.slice(
+  const recetasActuales = allRecipes.slice(
     indicePrimerReceta,
     indiceUltimaReceta
   );
@@ -34,12 +34,10 @@ export default function Home() {
   useEffect(() => {
     dispatch(getAllRecipes());
   }, [dispatch]);
-  //traigo del estado las recetas cuando el componente se monta
-  //en corchete va de lo que depende el useEffect(le estoy diciendo que si sucede (en este caso nada), se monte useEffect y funcione)
-
+  
   function handleClick(e) {
-    //le pasamos un evento al handler como la variable c
-    e.preventDefault(); //evito que recargue la pagina y se rompa
+ 
+    e.preventDefault(); 
     dispatch(getAllRecipes());
   }
 
@@ -109,7 +107,7 @@ export default function Home() {
 
         <Paginado
           recetasPorPagina={recetasPorPagina}
-          allRecetas={allRecetas.length}
+          allRecetas={allRecipes.length}
           paginado={paginado}
         />
 
@@ -138,7 +136,7 @@ export default function Home() {
 
         <Paginado
           recetasPorPagina={recetasPorPagina}
-          allRecetas={allRecetas.length}
+          allRecetas={allRecipes.length}
           paginado={paginado}
         />
        

@@ -1,7 +1,7 @@
 const initialState = {
 recetasFiltradas: [],
 allRecetas: [],
-dietas: [],
+diets: [],
 recetasDetail: []
 };
 
@@ -37,25 +37,25 @@ switch(action.type) {
 
     case "GET_DIETAS": return {
         ...state,
-        dietas: action.payload
+        diets: action.payload
     };
 
     case "FILTER_BY_DIETS_TYPE": 
         const allRecetas = state.recetasFiltradas
-        let dietasAPI = []
-        let dietasDB = []
+        let dietsAPI = []
+        let dietsDB = []
        
         allRecetas.forEach(e => {
-            if (e.hasOwnProperty("dietas") && e.dietas.includes(action.payload)) {
-                    dietasAPI.push(e)
+            if (e.hasOwnProperty("dietas") && e.diets.includes(action.payload)) {
+                    dietsAPI.push(e)
                 }  
             });
         allRecetas.forEach(e => { 
-            if (e.hasOwnProperty("dietas") && e.dietas.find(c => c.name === action.payload)) {
-                dietasDB.push(e)
+            if (e.hasOwnProperty("diets") && e.diets.find(c => c.name === action.payload)) {
+                dietsDB.push(e)
                 }
             });
-        const filtroDietas = dietasAPI.concat(dietasDB)
+        const filtroDietas = dietsAPI.concat(dietsDB)
         //console.log(filtroDietas)
         return {
             ...state,
@@ -106,20 +106,20 @@ switch(action.type) {
         const allRecetas4 = state.allRecetas
         if(action.payload === "descendente" ){ 
             allRecetas4.sort(function(a, b){
-                if(a.nivelSalud > b.nivelSalud){
+                if(a.healthScore > b.healthScore){
                     return 1;
                 }
-                if(b.nivelSalud > a.nivelSalud){
+                if(b.healthScored > a.healthScore){
                     return -1
                 }
                 return 0
             })
         } else if(action.payload === "ascendente" ){
             state.allRecetas.sort(function(a, b){
-                if(a.nivelSalud > b.nivelSalud){
+                if(a.healthScore > b.healthScore){
                     return -1;
                 }
-                if(b.nivelSalud > a.nivelSalud){
+                if(b.healthScore > a.healthScore){
                     return 1
                 }
                 return 0
