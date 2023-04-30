@@ -20,11 +20,12 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { keepDietsDb} = require('./src/controllers/FuctionRecipes.js')
+require("dotenv").config();
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
-  server.listen(3001,async() => {
+  server.listen(process.env.PGPORT || 3001,async() => {
    await keepDietsDb() 
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+    console.log(`%s listening at ${process.env.PGPORT || 3001}` ); // eslint-disable-line no-console
   });
 });
