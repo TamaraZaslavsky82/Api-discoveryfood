@@ -62,10 +62,10 @@ export function postRecipe(payload) {
 export const getDietas = () => {
     return async function (dispatch) {
         try {
-            var dietas = await axios.get("http://localhost:3001/diets")
+            var diets = await axios.get("http://localhost:3001/diets")
             return dispatch({
                 type: GET_DIETAS,
-                payload: dietas.data
+                payload: diets.data
             })
         }catch(err){
             console.log(err)
