@@ -64,14 +64,36 @@ const rootReducer = (state = initialState, action) => {
 
 
         case "CREADOS_DB": 
-            const allRecetas2 = state.recetasFiltradas
-            const creadosDB = action.payload === "DB" ? allRecetas2.filter(r => r.creadoDB) : allRecetas2.filter(r => !r.creadoDB)
-            console.log(creadosDB)
-            return {
+            // const allRecetas2 = state.recetasFiltradas
+            // const creadosDB = action.payload === "DB" ? allRecetas2.filter(r => r.creadoDB) : allRecetas2.filter(r => !r.creadoDB)
+            // console.log(creadosDB)
+            // return {
+            //     ...state,
+            //     allRecetas: action.payload === "all" ? allRecetas2 : creadosDB
+            // };
+            const allRecipe2= state.recetasFiltradas
+            let filterDb = [];
+            let filterApi = [];
+            if (action.payload === "created") {
+                filterDb = allRecipe2.filter((r) =>
+                  r.hasOwnProperty("createDB")
+                );
+              }
+              else if (action.payload === "api") {
+                filterApi = allRecipe2.filter((r) => !r.createDB);
+              }
+              return {
                 ...state,
-                allRecetas: action.payload === "all" ? allRecetas2 : creadosDB
-            };
-
+                allRecetas:
+                  action.payload === "All"
+                    ? allRecipe2
+                    : action.payload === "created"
+                    ? filterDb
+                    : action.payload === "api"
+                    ? filterApi
+                    : allRecipe2,
+                //recipes: action.payload === 'All' ? allRecipes_2 : createdFilter
+              };
 
         case "ORDER_BY_ALFABETO":
             const allRecetas3 = state.allRecetas

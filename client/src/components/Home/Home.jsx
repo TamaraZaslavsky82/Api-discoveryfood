@@ -101,7 +101,7 @@ export default function Home() {
         {/* lista desplegable de opciones sobre las Recetas */}
         <select className="level" onChange={(e) => handleCreadosDB(e)}>
           <option value="all">All Recipes</option>
-          <option value="DB">Recipes Created</option>
+          <option value="created">Recipes Created</option>
           <option value="api">Current Recipes</option>
         </select>
 
